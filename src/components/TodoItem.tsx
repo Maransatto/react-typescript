@@ -3,8 +3,13 @@ import classes from "./TodoItem.module.css";
 
 type Props = PropsWithChildren<{
   text: string;
+  onTodoItemClick: () => void;
 }>;
 
-export default function TodoItem({ text }: Props) {
-  return <li className={classes.item}>{text}</li>;
+export default function TodoItem({ text, onTodoItemClick }: Props) {
+  return (
+    <li className={classes.item} onClick={onTodoItemClick}>
+      {text}
+    </li>
+  );
 }
