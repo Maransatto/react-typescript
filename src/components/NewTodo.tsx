@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { PropsWithChildren, useRef } from "react";
 
-export default function NewTodo() {
+type Props = PropsWithChildren<{ onAddTodo: (text: string) => void }>;
+
+export default function NewTodo({ onAddTodo }: Props) {
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(event: React.FormEvent) {
@@ -12,6 +14,8 @@ export default function NewTodo() {
       //throw an erro
       return;
     }
+
+    onAddTodo(enteredText);
   }
 
   return (
