@@ -1,4 +1,5 @@
 import { PropsWithChildren, useRef } from "react";
+import classes from "./NewTodo.module.css";
 
 type Props = PropsWithChildren<{ onAddTodo: (text: string) => void }>;
 
@@ -19,7 +20,7 @@ export default function NewTodo({ onAddTodo }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={classes.form}>
       <label htmlFor="text">Todo Text</label>
       <input type="text" name="text" id="text" ref={todoTextInputRef} />
       <button>Add Todo</button>
