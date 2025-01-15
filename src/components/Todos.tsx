@@ -1,14 +1,11 @@
-import { PropsWithChildren } from "react";
-import Todo from "../models/Todo";
+import { useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 import TodoItem from "./TodoItem";
 import classes from "./Todos.module.css";
 
-type Props = PropsWithChildren<{
-  items: Todo[];
-  onRemoveItem: (id: string) => void;
-}>;
+export default function Todos() {
+  const { items, removeTodo } = useContext(TodosContext);
 
-export default function Todos({ items, onRemoveItem }: Props) {
   return (
     <ul className={classes.todos}>
       {items.map((item) => (
@@ -16,7 +13,7 @@ export default function Todos({ items, onRemoveItem }: Props) {
           key={item.id}
           text={item.text}
           // onTodoItemClick={() => onRemoveItem(item.id)} // just another approach
-          onTodoItemClick={onRemoveItem.bind(null, item.id)}
+          onTodoItemClick={removeTodo.bind(null, item.id)}
         />
       ))}
     </ul>

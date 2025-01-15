@@ -1,9 +1,9 @@
-import { PropsWithChildren, useRef } from "react";
+import { useContext, useRef } from "react";
+import { TodosContext } from "../store/todos-context";
 import classes from "./NewTodo.module.css";
 
-type Props = PropsWithChildren<{ onAddTodo: (text: string) => void }>;
-
-export default function NewTodo({ onAddTodo }: Props) {
+export default function NewTodo() {
+  const { addTodo } = useContext(TodosContext);
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(event: React.FormEvent) {
@@ -16,7 +16,7 @@ export default function NewTodo({ onAddTodo }: Props) {
       return;
     }
 
-    onAddTodo(enteredText);
+    addTodo(enteredText);
   }
 
   return (
